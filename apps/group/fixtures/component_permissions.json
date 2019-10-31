@@ -1,0 +1,114 @@
+[
+    {
+        "model": "group.PosmComponentPermission",
+        "fields": {
+            "code": "aoi",
+            "url_pattern": "^/aoi(/.*|$)"
+        }
+    },
+    {
+        "model": "group.PosmComponentPermission",
+        "fields": {
+            "code": "formList",
+            "url_pattern": "^/formList(/.*|$)"
+        }
+    },
+    {
+        "model": "group.PosmComponentPermission",
+        "fields": {
+            "code": "fp",
+            "url_pattern": "^/fp(/.*|$)"
+        }
+    },
+    {
+        "model": "group.PosmComponentPermission",
+        "fields": {
+            "code": "fp-tasks",
+            "url_pattern": "^/fp-tasks(/.*|$)"
+        }
+    },
+    {
+        "model": "group.PosmComponentPermission",
+        "fields": {
+            "code": "fp-tiler",
+            "url_pattern": "^/fp-tiler(/.*|$)"
+        }
+    },
+    {
+        "model": "group.PosmComponentPermission",
+        "fields": {
+            "code": "fp/_",
+            "url_pattern": "^/fp/_(/.*|$)"
+        }
+    },
+    {
+        "model": "group.PosmComponentPermission",
+        "fields": {
+            "code": "fp/assets",
+            "url_pattern": "^/fp/assets(/.*|$)"
+        }
+    },
+    {
+        "model": "group.PosmComponentPermission",
+        "fields": {
+            "code": "imagery",
+            "url_pattern": "^/imagery(/.*|$)"
+        }
+    },
+    {
+        "model": "group.PosmComponentPermission",
+        "fields": {
+            "code": "omk",
+            "url_pattern": "^/omk(/.*|$)"
+        }
+    },
+    {
+        "model": "group.PosmComponentPermission",
+        "fields": {
+            "code": "omk/data/forms",
+            "url_pattern": "^/omk/data/forms(/.*|$)"
+        }
+    },
+    {
+        "model": "group.PosmComponentPermission",
+        "fields": {
+            "code": "posm",
+            "url_pattern": "^/posm(/.*|$)"
+        }
+    },
+    {
+        "model": "group.PosmComponentPermission",
+        "fields": {
+            "code": "posm-admin",
+            "url_pattern": "^/posm-admin(/.*|$)"
+        }
+    },
+    {
+        "model": "group.PosmComponentPermission",
+        "fields": {
+            "code": "replication",
+            "url_pattern": "^/replication(/.*|$)"
+        }
+    },
+    {
+        "model": "group.PosmComponentPermission",
+        "fields": {
+            "code": "submission",
+            "url_pattern": "^/submission(/.*|$)"
+        }
+    },
+    {
+        "model": "group.PosmComponentPermission",
+        "fields": {
+            "code": "tiles",
+            "url_pattern": "^/tiles(/.*|$)"
+        }
+    },
+    {
+        "model": "group.PosmComponentPermission",
+        "fields": {
+            "code": "view",
+            "url_pattern": "^/view(/.*|$)"
+        }
+    }
+]

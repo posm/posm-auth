@@ -1,0 +1,26 @@
+version: '3.2'
+
+services:
+  server: # POSM Auth Server
+    image: "docker.pkg.github.com/posm/posm-auth:${PA_BRANCH_NAME:-master}"
+    build:
+      context: .
+      cache_from:
+        - "docker.pkg.github.com/posm/posm-auth:${PA_BRANCH_NAME}"
+        - docker.pkg.github.com/posm/posm-auth:master
+    env_file:
+      - .env
+    command: /code/scripts/run_develop.sh
+    volumes:
+      - ./:/code
+    ports:
+      - '8005:8005'
+
+  nginx: # NGINX Dummy Server
+    image: nginx:1.13
+    volumes:
+      - ./posm-nginx/:/etc/nginx/conf.d/:z
+    ports:
+      - '8085:80'
+    depends_on:
+      - server

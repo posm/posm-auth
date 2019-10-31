@@ -1,0 +1,24 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - echo "$GP_PASSWORD" | docker login docker.pkg.github.com -u "$GP_USERNAME" --password-stdin
+  - if [[ "$PA_BRANCH_NAME" = "master" ]] ; then export PA_BRANCH_NAME=; fi
+  - touch .env
+  - docker-compose pull || true
+
+before_script:
+  - docker-compose build
+
+script:
+  - docker-compose run --rm server bash /code/scripts/run_tests.sh
+
+after_success:
+  - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then docker-compose push; fi
+
+env:
+  global:
+    - PA_BRANCH_NAME=`echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr / _`
