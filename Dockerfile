@@ -12,6 +12,9 @@ COPY ./requirements.txt /code/requirements.txt
 
 RUN apk add --no-cache --virtual .build-deps \
         python3-dev \
+        gcc \
+        linux-headers \
+        musl-dev \
     && $PIP3 install --upgrade pip \
     && $PIP3 install --no-cache-dir -r requirements.txt \
     && apk del --no-cache .build-deps

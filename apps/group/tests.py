@@ -10,19 +10,6 @@ logger = logging.getLogger(__name__)
 
 class GroupTest(test.APITestCase):
     fixtures = ('component_permissions.json',)
-    test_urls = {
-        module: [
-            template.format(module)
-            for template in (
-                '/{0}',
-                '/{0}/',
-                '/{0}/random-path',
-                '/{0}/random-path?random-params=random-values',
-                '/{0}/random-another-path/random-text?random-params=random-values',
-            )
-        ]
-        for module, _ in posm_components
-    }
 
     def setUp(self):
         self.root_user = User.objects.create_user(
@@ -48,13 +35,12 @@ class GroupTest(test.APITestCase):
     def test_permission(self):
         self.authenticate('normal', 'admin123')
         user = self.user
-        for module, _ in posm_components:
+        for module in posm_components:
             user.profile.permissions.all().delete()
             user.profile.permissions.add(PosmComponentPermission.objects.get(code=module))
 
-            for url_module, urls in self.test_urls.items():
-                for url in urls:
-                    response = self.client.get('/permission-validate/', **{'HTTP_X-Original-URI': url})
-                    expected_status_code = status.HTTP_200_OK if url_module == module else status.HTTP_403_FORBIDDEN
-                    assert response.status_code == expected_status_code,\
-                        f'Response code should be {expected_status_code} for module: {module} with url: {url_module}:{url}'
+            for _module in posm_components:
+                response = self.client.get('/permission-validate/', **{'HTTP_X-POSM-AUTH-MODULE': _module})
+                expected_status_code = status.HTTP_200_OK if _module == module else status.HTTP_403_FORBIDDEN
+                assert response.status_code == expected_status_code,\
+                    f'Response code should be {expected_status_code} with module permission: {module} for module: {_module}'

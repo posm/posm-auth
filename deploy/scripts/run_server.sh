@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/sh
 
 python3 /code/manage.py collectstatic --no-input &
 python3 /code/manage.py migrate --no-input

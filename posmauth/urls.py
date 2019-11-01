@@ -14,17 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.conf import settings
-from django.urls import path, re_path
+from django.urls import path
 
-from group.views import PermissionValidationView, DumpView
+from group.views import PermissionValidationView, DummyView
 
 urlpatterns = [
     path(r'permission-validate/', PermissionValidationView.as_view()),
-    path('admin/', admin.site.urls),
+    path('dump/', DummyView.as_view()),
+    path('', admin.site.urls),
 ]
-
-if settings.DEBUG:
-    urlpatterns += [
-        re_path('^.*$', DumpView.as_view()),
-    ]

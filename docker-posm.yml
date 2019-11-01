@@ -1,0 +1,15 @@
+version: '3.2'
+
+services:
+  server: # POSM Auth Server
+    image: "docker.pkg.github.com/posm/posm-auth:master"
+    build: .
+    environment:
+      - FORCE_SCRIPT_NAME=/admin-panel
+    env_file:
+      - .env
+    command: /code/deploy/scripts/run_server.sh
+    volumes:
+      - ./db.sqlite3:/code/db.sqlite3
+    ports:
+      - '8005:80'

@@ -7,11 +7,9 @@ class PosmComponentPermission(models.Model):
     POSM Auth user group model
     """
     code = models.CharField(max_length=255, primary_key=True)
-    url_pattern = models.CharField(max_length=255)
-    description = models.TextField(blank=True)
 
     def __str__(self):
-        return f'{self.url_pattern}'
+        return f'{self.code}'
 
 
 class UserGroup(models.Model):

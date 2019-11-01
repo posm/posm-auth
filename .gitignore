@@ -81,3 +81,7 @@ production.env
 
 # database
 *.sqlite3
+
+# generated static files
+static/*
+media/*

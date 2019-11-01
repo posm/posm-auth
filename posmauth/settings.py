@@ -134,11 +134,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = '/static'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = '/media'
+FORCE_SCRIPT_NAME = os.environ.get('FORCE_SCRIPT_NAME', '/admin-panel')
+
+STATIC_URL = f'{FORCE_SCRIPT_NAME}/static/'
+MEDIA_URL = f'{FORCE_SCRIPT_NAME}/media/'
+STATIC_ROOT = 'static'
+MEDIA_ROOT = 'media'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(APPS_DIR, "static"),
 ]

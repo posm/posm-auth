@@ -8,19 +8,20 @@ services:
       cache_from:
         - "docker.pkg.github.com/posm/posm-auth:${PA_BRANCH_NAME}"
         - docker.pkg.github.com/posm/posm-auth:master
-    env_file:
-      - .env
+    environment:
+      # For supporting subpath in Django
+      - FORCE_SCRIPT_NAME=/admin-panel
     command: /code/scripts/run_develop.sh
     volumes:
       - ./:/code
-    ports:
-      - '8005:8005'
 
   nginx: # NGINX Dummy Server
     image: nginx:1.13
     volumes:
       - ./posm-nginx/:/etc/nginx/conf.d/:z
+      - ./static/:/server-static/:z
+      - ./media/:/server-media/:z
     ports:
-      - '8085:80'
+      - '8005:80'
     depends_on:
       - server
