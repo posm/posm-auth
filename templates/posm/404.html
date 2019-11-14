@@ -1,0 +1,9 @@
+{% extends "posm/400_base.html" %}
+{% load static %}
+
+{% block message %}
+    <h2>Oooops! Are you lost?</h2>
+{% endblock %}
+{% block image %}
+    <img src="{% static '/img/lost.png' %}" alt="">
+{% endblock %}

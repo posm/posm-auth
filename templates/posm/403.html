@@ -1,0 +1,9 @@
+{% extends "posm/400_base.html" %}
+{% load static %}
+
+{% block message %}
+    <h2>Oh Nooo! <br>Seems like you don't have access to this page.</h2>
+{% endblock %}
+{% block image %}
+    <img src="{% static '/img/403.png' %}" alt="">
+{% endblock %}

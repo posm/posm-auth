@@ -1,5 +1,4 @@
 import logging
-import base64
 from rest_framework import test, status
 
 from group.models import User, PosmComponentPermission
@@ -28,18 +27,16 @@ class GroupTest(test.APITestCase):
         )
 
     def authenticate(self, username, password):
-        self.client.credentials(
-            HTTP_AUTHORIZATION='Basic ' + base64.b64encode(f'{username}:{password}'.encode()).decode()
-        )
+        self.client.login(username=username, password=password)
 
     def test_permission(self):
         self.authenticate('normal', 'admin123')
         user = self.user
-        for module in posm_components:
+        for module, _, _ in posm_components:
             user.profile.permissions.all().delete()
             user.profile.permissions.add(PosmComponentPermission.objects.get(code=module))
 
-            for _module in posm_components:
+            for _module, _, _ in posm_components:
                 response = self.client.get('/permission-validate/', **{'HTTP_X-POSM-AUTH-MODULE': _module})
                 expected_status_code = status.HTTP_200_OK if _module == module else status.HTTP_403_FORBIDDEN
                 assert response.status_code == expected_status_code,\
