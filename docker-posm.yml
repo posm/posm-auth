@@ -2,13 +2,13 @@ version: '3.2'
 
 services:
   server: # POSM Auth Server
-    image: "docker.pkg.github.com/posm/posm-auth:master"
+    image: "docker.pkg.github.com/posm/posm-auth/server:master"
     build: .
-    environment:
-      - FORCE_SCRIPT_NAME=/admin-panel
     env_file:
       - .env
     command: /code/deploy/scripts/run_server.sh
+    environment:
+      - COOKIE_DOMAIN=posm.togglecorp.com
     volumes:
       - ./db.sqlite3:/code/db.sqlite3
     ports:

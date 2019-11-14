@@ -15,6 +15,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'posmauth.settings')
 
 _application = get_wsgi_application()
 
+
 def application(environ, start_response):
     from django.conf import settings
     script_name = getattr(settings, 'FORCE_SCRIPT_NAME', None)

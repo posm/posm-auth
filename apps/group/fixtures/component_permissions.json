@@ -2,97 +2,33 @@
     {
         "model": "group.PosmComponentPermission",
         "fields": {
-            "code": "aoi"
+            "code": "omk",
+            "name": "OpenMapKit",
+            "description": null
         }
     },
     {
         "model": "group.PosmComponentPermission",
         "fields": {
-            "code": "formList"
+            "code": "fp",
+            "name": "Field Papers",
+            "description": null
         }
     },
     {
         "model": "group.PosmComponentPermission",
         "fields": {
-            "code": "fp"
+            "code": "osm",
+            "name": "OpenStreetMap",
+            "description": null
         }
     },
     {
         "model": "group.PosmComponentPermission",
         "fields": {
-            "code": "fp-tasks"
-        }
-    },
-    {
-        "model": "group.PosmComponentPermission",
-        "fields": {
-            "code": "fp-tiler"
-        }
-    },
-    {
-        "model": "group.PosmComponentPermission",
-        "fields": {
-            "code": "fp-_"
-        }
-    },
-    {
-        "model": "group.PosmComponentPermission",
-        "fields": {
-            "code": "fp-assets"
-        }
-    },
-    {
-        "model": "group.PosmComponentPermission",
-        "fields": {
-            "code": "imagery"
-        }
-    },
-    {
-        "model": "group.PosmComponentPermission",
-        "fields": {
-            "code": "omk"
-        }
-    },
-    {
-        "model": "group.PosmComponentPermission",
-        "fields": {
-            "code": "omk-data-forms"
-        }
-    },
-    {
-        "model": "group.PosmComponentPermission",
-        "fields": {
-            "code": "posm"
-        }
-    },
-    {
-        "model": "group.PosmComponentPermission",
-        "fields": {
-            "code": "posm-admin"
-        }
-    },
-    {
-        "model": "group.PosmComponentPermission",
-        "fields": {
-            "code": "replication"
-        }
-    },
-    {
-        "model": "group.PosmComponentPermission",
-        "fields": {
-            "code": "submission"
-        }
-    },
-    {
-        "model": "group.PosmComponentPermission",
-        "fields": {
-            "code": "tiles"
-        }
-    },
-    {
-        "model": "group.PosmComponentPermission",
-        "fields": {
-            "code": "view"
+            "code": "odmgcp",
+            "name": "ODM GCPs",
+            "description": "OpenDroneMap Ground Control Points"
         }
     }
 ]

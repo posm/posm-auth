@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <style>
+            body {
+                height: 100vh - 10%;
+                background: #181a1b;
+                color: white;
+            }
+            .message {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                text-align: center;
+                height: 100%;
+            }
+            .debug-warning {
+                font-size: small;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="message">
+            <h2>Success!! You have access to this URL</h2>
+            <div class="debug-warning">
+                <p>
+                    You're seeing this message because you have <code>DEBUG = True</code> in
+                    your Django settings file. Change that to <code>False</code>, and Django
+                    will not display this page.
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

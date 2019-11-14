@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'djangorestframework_camel_case',
 ] + [
     '{}.{}.apps.{}Config'.format(
         APPS_DIR.split('/')[-1],
@@ -57,6 +58,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -71,7 +73,7 @@ ROOT_URLCONF = 'posmauth.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,13 +136,42 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-FORCE_SCRIPT_NAME = os.environ.get('FORCE_SCRIPT_NAME', '/admin-panel')
+FORCE_SCRIPT_NAME = os.environ.get('FORCE_SCRIPT_NAME', '')
 
 STATIC_URL = f'{FORCE_SCRIPT_NAME}/static/'
 MEDIA_URL = f'{FORCE_SCRIPT_NAME}/media/'
-STATIC_ROOT = 'static'
-MEDIA_ROOT = 'media'
+STATIC_ROOT = '/static'
+MEDIA_ROOT = '/media'
 
 STATICFILES_DIRS = [
-    os.path.join(APPS_DIR, "static"),
+    os.path.join(BASE_DIR, "static"),
 ]
+
+SESSION_COOKIE_NAME = 'posm-auth-session-id'
+CSRF_COOKIE_NAME = 'posm-auth-csrftoken'
+
+SESSION_COOKIE_DOMAIN = CSRF_COOKIE_DOMAIN = os.environ.get('COOKIE_DOMAIN')
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # NOTE: Not using basic authentication since it may conflict with other posm components
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'djangorestframework_camel_case.parser.CamelCaseJSONParser',
+    ),
+    'DEFAULT_RENDERER_CLASSES': [
+        'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
+    ],
+    'JSON_UNDERSCOREIZE': {
+        'no_underscore_before_number': True,
+    },
+}
+
+POSM_ADMIN_URL = os.environ['POSM_ADMIN_URL']
+LOGIN_REDIRECT_URL = POSM_ADMIN_URL
+LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = LOGIN_URL

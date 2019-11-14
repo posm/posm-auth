@@ -28,6 +28,8 @@ class Migration(migrations.Migration):
             name='PosmComponentPermission',
             fields=[
                 ('code', models.CharField(max_length=255, primary_key=True, serialize=False)),
+                ('name', models.CharField(max_length=255)),
+                ('description', models.TextField(blank=True, null=True)),
             ],
         ),
         migrations.CreateModel(
@@ -35,7 +37,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=255)),
-                ('description', models.TextField(blank=True)),
+                ('description', models.TextField(blank=True, null=True)),
                 ('members', models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
                 ('permissions', models.ManyToManyField(to='group.PosmComponentPermission')),
             ],

@@ -1,0 +1,38 @@
+{% load static %}
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>
+            POSM AUTH - Login
+        </title>
+        <link rel="stylesheet" type="text/css" href="{% static "css/login.css" %}" />
+    </head>
+    <body>
+        <main class="main">
+            <header class="header">
+                <div class="top">
+                    <!-- <img class="gc-logo" src="{% static 'img/logo.png' %}" alt="POSM"> -->
+                </div>
+                <div class="bottom">
+                    <h1 class="title">POSM</h1>
+                    <p class="description">POSM Authentication</p>
+                </div>
+            </header>
+            <div class="separator"></div>
+            <div class="content">
+                <form class="form" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="hidden" name="next" value="{{ request.GET.next }}">
+                    <button type="submit">Log in</button>
+                </form>
+            </div>
+        </main>
+
+        <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700&display=swap" rel="stylesheet">
+    </body>
+</html>
