@@ -12,24 +12,33 @@
         <link rel="stylesheet" type="text/css" href="{% static "css/login.css" %}" />
     </head>
     <body>
+        <div class="page-header">
+            <a href="#">
+                <img src="{% static 'img/posm_icon_branding.svg' %}"
+                    alt="POSM branding Logo"
+                >
+            </a>
+        </div>
         <main class="main">
-            <header class="header">
-                <div class="top">
-                    <!-- <img class="gc-logo" src="{% static 'img/logo.png' %}" alt="POSM"> -->
+            <div class="main-wrapper">
+                <header class="header">
+                    <div class="top">
+                        <img class="gc-logo" src="{% static 'img/posm_icon.svg' %}" alt="POSM">
+                    </div>
+                    <div class="bottom">
+                        <p class="description">POSM Authentication</p>
+                    </div>
+                </header>
+                <div class="separator"></div>
+                <div class="content">
+                    <h2 class="content-title">User<span class="text-primary">Login</span></h2>
+                    <form class="form" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="hidden" name="next" value="{{ request.GET.next }}">
+                        <button type="submit">Log in</button>
+                    </form>
                 </div>
-                <div class="bottom">
-                    <h1 class="title">POSM</h1>
-                    <p class="description">POSM Authentication</p>
-                </div>
-            </header>
-            <div class="separator"></div>
-            <div class="content">
-                <form class="form" method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <input type="hidden" name="next" value="{{ request.GET.next }}">
-                    <button type="submit">Log in</button>
-                </form>
             </div>
         </main>
 

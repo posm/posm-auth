@@ -9,6 +9,16 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
         <title>POSM : 404</title>
         <style>
+            * {
+                box-sizing: border-box;
+            }
+            body{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 0;
+                height: 100vh;
+            }
             img{
                 max-width: 100%;
             }
@@ -24,11 +34,30 @@
                 align-items: center;
                 font-family: 'Open Sans', sans-serif;
             }
+            .page-header{
+                display: flex;
+                flex-shrink: 0;
+                align-items: center;
+                width: 100vw;
+                background-color: #394B59;
+                align-self: flex-start;
+                height: 50px;
+                padding: 0 30px;
+            }
+
+            .page-header img{
+                width: 100px;
+            }
+            .page-content{
+                display: flex;
+                flex-grow: 1;
+                justify-content: center;
+                align-items: center;
+            }
             .body-wrapper{
                 display: flex;
                 flex-direction: column;
-                width: 80vw;
-                max-width: 1170px;
+                justify-content: center;
             }
             .logo-wrapper{
                 margin: 25px 0;
@@ -49,33 +78,38 @@
             .link-section>a{
                 color: #fff;
                 text-decoration: none;
-                background-color: #12476B;
-                border: 3px solid #12476B;
-                border-radius: 8px;;
+                background-color: #2586C2;
+                border: 1px solid #1D5A7F;
+                border-radius: 8px;
                 padding: 15px 30px;
-                font-size: 1.2em;
-                transition: background 0.5s ease, color 0.5s ease;
+                font-size: 14px;
+                transition: all 0.5s ease;
             }
             .link-section>a:hover{
-                background-color: #fff;
-                color: #12476B;
+                background-color: #2679AC;
             }
         </style>
     </head>
 
     <body>
-        <div class="body-wrapper">
-            <div class="logo-wrapper">
-                <img src="{% static '/img/posm_icon.svg' %}" alt="">
-            </div>
-            <div class="message-wrapper">
-                {% block message %}{% endblock %}
-            </div>
-            <div class="lost-wrapper">
-                {% block image %}{% endblock %}
-            </div>
-            <div class="link-section">
-                <a href="{{home_url}}">Head back to Admin page</a>
+        <div class="page-header">
+            <a href="#">
+                <img src="{% static 'img/posm_icon_branding.svg' %}"
+                    alt="POSM branding Logo"
+                >
+            </a>
+        </div>
+        <div class="page-content">
+            <div class="body-wrapper">
+                <div class="message-wrapper">
+                    {% block message %}{% endblock %}
+                </div>
+                <div class="lost-wrapper">
+                    {% block image %}{% endblock %}
+                </div>
+                <div class="link-section">
+                    <a href="{{home_url}}">Head back to Admin page</a>
+                </div>
             </div>
         </div>
     </body>
