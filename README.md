@@ -1,4 +1,4 @@
-# POSM Auth
+# POSM Auth ![CI](https://github.com/posm/posm-auth/workflows/CI/badge.svg)
 
 ### Run in Development
 
