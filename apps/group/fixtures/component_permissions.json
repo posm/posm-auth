@@ -30,5 +30,21 @@
             "name": "ODM GCPs",
             "description": "OpenDroneMap Ground Control Points"
         }
+    },
+    {
+        "model": "group.PosmComponentPermission",
+        "fields": {
+            "code": "replay",
+            "name": "Replay Tool",
+            "description": null
+        }
+    },
+    {
+        "model": "group.PosmComponentPermission",
+        "fields": {
+            "code": "odkc",
+            "name": "ODK Central",
+            "description": null
+        }
     }
 ]

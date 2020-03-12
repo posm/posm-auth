@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+    tags:
+      - v*
+
+jobs:
+  test_push:
+    name: Test and Push docker image
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Docker Setup
+        run: |
+          # docker login
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
+          # Strip git ref prefix from version
+          export PA_BRANCH_NAME=`echo ${{ github.ref }} | sed -e 's,.*/\(.*\),\1,'`
+          if [[ "$PA_BRANCH_NAME" = "master" ]] ; then export PA_BRANCH_NAME=; fi
+
+          # Share PA_BRANCH variable amount steps
+          echo "::set-env name=PA_BRANCH_NAME::$PA_BRANCH_NAME"
+          touch .env
+
+      - name: Docker pull
+        run: docker-compose pull || PA_BRANCH_NAME= docker-compose pull || true
+
+      - name: Build docker image
+        run: docker-compose build
+
+      - name: Run test
+        run: docker-compose run --rm server pytest
+
+      - name: Push image
+        if: github.event_name == 'push'
+        run: docker-compose push
