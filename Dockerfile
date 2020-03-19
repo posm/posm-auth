@@ -19,6 +19,9 @@ RUN apk add --no-cache --virtual .build-deps \
     && $PIP3 install --no-cache-dir -r requirements.txt \
     && apk del --no-cache .build-deps
 
+# touch a file sqlite3 which will be the volume for db
+RUN touch /code/db.sqlite3
+
 COPY . /code/
 
 CMD ./deploy/scripts/run_server.sh

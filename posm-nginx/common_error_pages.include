@@ -16,3 +16,5 @@ location @error404 {
     # Custom Not Found Page
     return 307 http://localhost:8050/404?POSMAUTH__from=$scheme://$http_host$request_uri;
 }
+
+# vi:syntax=nginx
