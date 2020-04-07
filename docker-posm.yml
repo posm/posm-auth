@@ -8,8 +8,8 @@ services:
       - .env
     command: /code/deploy/scripts/run_server.sh
     environment:
-      - COOKIE_DOMAIN=posm.togglecorp.com
+      - COOKIE_DOMAIN=.posm.io
     volumes:
       - ./db.sqlite3:/code/db.sqlite3
     ports:
-      - '8005:80'
+      - '6011:80'

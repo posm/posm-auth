@@ -38,6 +38,18 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user} Profile'
 
+    def save(self, *args, **kwargs):
+        """
+        NOTE: Conflicts occur between the User's post_save receiver and admin panel's
+        user save action. This occurs because admin panel's action automatically creates
+        profile without the use of signals, And whenever user is created, our receiver
+        tries to create profile with the same user.
+        Check this by overriding this save method which checks for duplicate entries
+        """
+        if not self.id and Profile.objects.filter(user_id=self.user.id).first():
+            return Profile.objects.get(user_id=self.user.id)
+        return super().save(*args, **kwargs)
+
     def get_allowed_posm_components(self):
         return PosmComponentPermission.objects.filter(
             Q(usergroup__members=self.user) | Q(profile__user=self.user)
