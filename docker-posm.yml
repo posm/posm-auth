@@ -10,6 +10,6 @@ services:
     environment:
       - COOKIE_DOMAIN=.posm.io
     volumes:
-      - ./db.sqlite3:/code/db.sqlite3
+      - ./:/code/
     ports:
       - '6011:80'
