@@ -1,0 +1,4 @@
+# These env values are the values used in posm
+
+COOKIE_DOMAIN=.posm.io
+POSM_ADMIN_URL=http://posm.io
