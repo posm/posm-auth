@@ -8,9 +8,8 @@ services:
       cache_from:
         - "docker.pkg.github.com/posm/posm-auth/server:${PA_BRANCH_NAME}"
         - docker.pkg.github.com/posm/posm-auth/server:master
-    environment:
-      - POSM_ADMIN_URL=http://localhost:8051/posm/
-      - COOKIE_DOMAIN=.posm.io
+    env_file:
+      - .env
     command: /code/scripts/run_develop.sh
     volumes:
       - ./:/code
