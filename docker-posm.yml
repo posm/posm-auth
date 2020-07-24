@@ -7,8 +7,6 @@ services:
     env_file:
       - .env
     command: /code/deploy/scripts/run_server.sh
-    environment:
-      - COOKIE_DOMAIN=.posm.io
     volumes:
       - ./:/code/
     ports:
